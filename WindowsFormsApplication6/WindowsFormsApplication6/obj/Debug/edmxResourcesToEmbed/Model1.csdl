@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HospitalModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HospitalEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Admin" EntityType="HospitalModel.Admin" />
+    <EntitySet Name="Analysis" EntityType="HospitalModel.Analysis" />
+    <EntitySet Name="Diagnosis" EntityType="HospitalModel.Diagnosis" />
+    <EntitySet Name="DOCTORS_1" EntityType="HospitalModel.DOCTORS_1" />
+    <EntitySet Name="Engineer_1" EntityType="HospitalModel.Engineer_1" />
+    <EntitySet Name="Hospital" EntityType="HospitalModel.Hospital" />
+    <EntitySet Name="Laboratory" EntityType="HospitalModel.Laboratory" />
+    <EntitySet Name="Patient" EntityType="HospitalModel.Patient" />
+    <EntitySet Name="sysdiagrams" EntityType="HospitalModel.sysdiagrams" />
+    <EntitySet Name="Type_of_analysis" EntityType="HospitalModel.Type_of_analysis" />
+    <AssociationSet Name="FK_Admin_Hospital" Association="HospitalModel.FK_Admin_Hospital">
+      <End Role="Hospital" EntitySet="Hospital" />
+      <End Role="Admin" EntitySet="Admin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Analysis_Patient1" Association="HospitalModel.FK_Analysis_Patient1">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="Analysis" EntitySet="Analysis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Type_of_analysis_Analysis" Association="HospitalModel.FK_Type_of_analysis_Analysis">
+      <End Role="Analysis" EntitySet="Analysis" />
+      <End Role="Type_of_analysis" EntitySet="Type_of_analysis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Diagnosis_DOCTORS_1" Association="HospitalModel.FK_Diagnosis_DOCTORS_1">
+      <End Role="DOCTORS_1" EntitySet="DOCTORS_1" />
+      <End Role="Diagnosis" EntitySet="Diagnosis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCTORS_1_Hospital1" Association="HospitalModel.FK_DOCTORS_1_Hospital1">
+      <End Role="Hospital" EntitySet="Hospital" />
+      <End Role="DOCTORS_1" EntitySet="DOCTORS_1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_DOCTORS_11" Association="HospitalModel.FK_Patient_DOCTORS_11">
+      <End Role="DOCTORS_1" EntitySet="DOCTORS_1" />
+      <End Role="Patient" EntitySet="Patient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Engineer_1_Hospital1" Association="HospitalModel.FK_Engineer_1_Hospital1">
+      <End Role="Hospital" EntitySet="Hospital" />
+      <End Role="Engineer_1" EntitySet="Engineer_1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Engineer_1_Laboratory1" Association="HospitalModel.FK_Engineer_1_Laboratory1">
+      <End Role="Laboratory" EntitySet="Laboratory" />
+      <End Role="Engineer_1" EntitySet="Engineer_1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Type_of_analysis_Engineer_1" Association="HospitalModel.FK_Type_of_analysis_Engineer_1">
+      <End Role="Engineer_1" EntitySet="Engineer_1" />
+      <End Role="Type_of_analysis" EntitySet="Type_of_analysis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Laboratory_Hospital" Association="HospitalModel.FK_Laboratory_Hospital">
+      <End Role="Hospital" EntitySet="Hospital" />
+      <End Role="Laboratory" EntitySet="Laboratory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Type_of_analysis_Laboratory" Association="HospitalModel.FK_Type_of_analysis_Laboratory">
+      <End Role="Laboratory" EntitySet="Laboratory" />
+      <End Role="Type_of_analysis" EntitySet="Type_of_analysis" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="35" Unicode="true" FixedLength="true" />
+    <Property Name="LastName" Type="String" MaxLength="35" Unicode="true" FixedLength="true" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Hospital_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hospital" Relationship="HospitalModel.FK_Admin_Hospital" FromRole="Admin" ToRole="Hospital" />
+  </EntityType>
+  <EntityType Name="Analysis">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Type_of_analysis" Type="String" Nullable="false" MaxLength="35" Unicode="true" FixedLength="true" />
+    <Property Name="State_of_analysis" Type="String" Nullable="false" MaxLength="35" Unicode="true" FixedLength="true" />
+    <Property Name="Date_created" Type="DateTime" Precision="0" />
+    <Property Name="Author" Type="String" MaxLength="35" Unicode="true" FixedLength="true" />
+    <Property Name="Patient_SSN" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Patient" Relationship="HospitalModel.FK_Analysis_Patient1" FromRole="Analysis" ToRole="Patient" />
+    <NavigationProperty Name="Type_of_analysis1" Relationship="HospitalModel.FK_Type_of_analysis_Analysis" FromRole="Analysis" ToRole="Type_of_analysis" />
+  </EntityType>
+  <EntityType Name="Diagnosis">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Analysis" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="AnalysisID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DOCTORS_1" Relationship="HospitalModel.FK_Diagnosis_DOCTORS_1" FromRole="Diagnosis" ToRole="DOCTORS_1" />
+  </EntityType>
+  <EntityType Name="DOCTORS_1">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="35" Unicode="true" FixedLength="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="35" Unicode="true" FixedLength="true" />
+    <Property Name="HospitalID" Type="Int32" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Diagnosis" Relationship="HospitalModel.FK_Diagnosis_DOCTORS_1" FromRole="DOCTORS_1" ToRole="Diagnosis" />
+    <NavigationProperty Name="Hospital" Relationship="HospitalModel.FK_DOCTORS_1_Hospital1" FromRole="DOCTORS_1" ToRole="Hospital" />
+    <NavigationProperty Name="Patient" Relationship="HospitalModel.FK_Patient_DOCTORS_11" FromRole="DOCTORS_1" ToRole="Patient" />
+  </EntityType>
+  <EntityType Name="Engineer_1">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="35" Unicode="true" FixedLength="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="35" Unicode="true" FixedLength="true" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="LaboratoryID" Type="Int32" Nullable="false" />
+    <Property Name="HospitalID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hospital" Relationship="HospitalModel.FK_Engineer_1_Hospital1" FromRole="Engineer_1" ToRole="Hospital" />
+    <NavigationProperty Name="Laboratory" Relationship="HospitalModel.FK_Engineer_1_Laboratory1" FromRole="Engineer_1" ToRole="Laboratory" />
+    <NavigationProperty Name="Type_of_analysis" Relationship="HospitalModel.FK_Type_of_analysis_Engineer_1" FromRole="Engineer_1" ToRole="Type_of_analysis" />
+  </EntityType>
+  <EntityType Name="Hospital">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="35" Unicode="true" FixedLength="true" />
+    <Property Name="Adress" Type="String" MaxLength="35" Unicode="true" FixedLength="true" />
+    <Property Name="C__of_workers" Type="Int32" />
+    <NavigationProperty Name="Admin" Relationship="HospitalModel.FK_Admin_Hospital" FromRole="Hospital" ToRole="Admin" />
+    <NavigationProperty Name="DOCTORS_1" Relationship="HospitalModel.FK_DOCTORS_1_Hospital1" FromRole="Hospital" ToRole="DOCTORS_1" />
+    <NavigationProperty Name="Engineer_1" Relationship="HospitalModel.FK_Engineer_1_Hospital1" FromRole="Hospital" ToRole="Engineer_1" />
+    <NavigationProperty Name="Laboratory" Relationship="HospitalModel.FK_Laboratory_Hospital" FromRole="Hospital" ToRole="Laboratory" />
+  </EntityType>
+  <EntityType Name="Laboratory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="C__room" Type="Int32" />
+    <Property Name="Type_of_research" Type="String" MaxLength="45" Unicode="true" FixedLength="true" />
+    <Property Name="Who_works" Type="String" MaxLength="35" Unicode="true" FixedLength="true" />
+    <Property Name="HospitalID" Type="Int32" />
+    <NavigationProperty Name="Engineer_1" Relationship="HospitalModel.FK_Engineer_1_Laboratory1" FromRole="Laboratory" ToRole="Engineer_1" />
+    <NavigationProperty Name="Hospital" Relationship="HospitalModel.FK_Laboratory_Hospital" FromRole="Laboratory" ToRole="Hospital" />
+    <NavigationProperty Name="Type_of_analysis" Relationship="HospitalModel.FK_Type_of_analysis_Laboratory" FromRole="Laboratory" ToRole="Type_of_analysis" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="SSN" />
+    </Key>
+    <Property Name="SSN" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="true" />
+    <Property Name="DocrotsID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Analysis" Relationship="HospitalModel.FK_Analysis_Patient1" FromRole="Patient" ToRole="Analysis" />
+    <NavigationProperty Name="DOCTORS_1" Relationship="HospitalModel.FK_Patient_DOCTORS_11" FromRole="Patient" ToRole="DOCTORS_1" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Type_of_analysis">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name_analysis" Type="String" Nullable="false" MaxLength="45" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="Analysis" Relationship="HospitalModel.FK_Type_of_analysis_Analysis" FromRole="Type_of_analysis" ToRole="Analysis" />
+    <NavigationProperty Name="Engineer_1" Relationship="HospitalModel.FK_Type_of_analysis_Engineer_1" FromRole="Type_of_analysis" ToRole="Engineer_1" />
+    <NavigationProperty Name="Laboratory" Relationship="HospitalModel.FK_Type_of_analysis_Laboratory" FromRole="Type_of_analysis" ToRole="Laboratory" />
+  </EntityType>
+  <Association Name="FK_Admin_Hospital">
+    <End Role="Hospital" Type="HospitalModel.Hospital" Multiplicity="1" />
+    <End Role="Admin" Type="HospitalModel.Admin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospital">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Admin">
+        <PropertyRef Name="Hospital_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Analysis_Patient1">
+    <End Role="Patient" Type="HospitalModel.Patient" Multiplicity="1" />
+    <End Role="Analysis" Type="HospitalModel.Analysis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="SSN" />
+      </Principal>
+      <Dependent Role="Analysis">
+        <PropertyRef Name="Patient_SSN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Type_of_analysis_Analysis">
+    <End Role="Analysis" Type="HospitalModel.Analysis" Multiplicity="1" />
+    <End Role="Type_of_analysis" Type="HospitalModel.Type_of_analysis" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Analysis">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Type_of_analysis">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Diagnosis_DOCTORS_1">
+    <End Role="DOCTORS_1" Type="HospitalModel.DOCTORS_1" Multiplicity="1" />
+    <End Role="Diagnosis" Type="HospitalModel.Diagnosis" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTORS_1">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Diagnosis">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCTORS_1_Hospital1">
+    <End Role="Hospital" Type="HospitalModel.Hospital" Multiplicity="0..1" />
+    <End Role="DOCTORS_1" Type="HospitalModel.DOCTORS_1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospital">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DOCTORS_1">
+        <PropertyRef Name="HospitalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_DOCTORS_11">
+    <End Role="DOCTORS_1" Type="HospitalModel.DOCTORS_1" Multiplicity="1" />
+    <End Role="Patient" Type="HospitalModel.Patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTORS_1">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Patient">
+        <PropertyRef Name="DocrotsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Engineer_1_Hospital1">
+    <End Role="Hospital" Type="HospitalModel.Hospital" Multiplicity="1" />
+    <End Role="Engineer_1" Type="HospitalModel.Engineer_1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospital">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Engineer_1">
+        <PropertyRef Name="HospitalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Engineer_1_Laboratory1">
+    <End Role="Laboratory" Type="HospitalModel.Laboratory" Multiplicity="1" />
+    <End Role="Engineer_1" Type="HospitalModel.Engineer_1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Engineer_1">
+        <PropertyRef Name="LaboratoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Type_of_analysis_Engineer_1">
+    <End Role="Engineer_1" Type="HospitalModel.Engineer_1" Multiplicity="1" />
+    <End Role="Type_of_analysis" Type="HospitalModel.Type_of_analysis" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Engineer_1">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Type_of_analysis">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Laboratory_Hospital">
+    <End Role="Hospital" Type="HospitalModel.Hospital" Multiplicity="0..1" />
+    <End Role="Laboratory" Type="HospitalModel.Laboratory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospital">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Laboratory">
+        <PropertyRef Name="HospitalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Type_of_analysis_Laboratory">
+    <End Role="Laboratory" Type="HospitalModel.Laboratory" Multiplicity="1" />
+    <End Role="Type_of_analysis" Type="HospitalModel.Type_of_analysis" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Type_of_analysis">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

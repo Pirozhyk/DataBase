@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="842e714d756d46e287707ee8b4ce6dce" Name="Диаграмма1">
+        <EntityTypeShape EntityType="HospitalModel.Admin" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalModel.Analysis" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalModel.Diagnosis" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalModel.DOCTORS_1" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalModel.Engineer_1" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalModel.Hospital" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalModel.Laboratory" Width="1.5" PointX="3" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalModel.Patient" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalModel.sysdiagrams" Width="1.5" PointX="6" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalModel.Type_of_analysis" Width="1.5" PointX="9.75" PointY="12.875" IsExpanded="true" />
+        <AssociationConnector Association="HospitalModel.FK_Admin_Hospital" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalModel.FK_Analysis_Patient1" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalModel.FK_Type_of_analysis_Analysis" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalModel.FK_Diagnosis_DOCTORS_1" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalModel.FK_DOCTORS_1_Hospital1" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalModel.FK_Patient_DOCTORS_11" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalModel.FK_Engineer_1_Hospital1" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalModel.FK_Engineer_1_Laboratory1" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalModel.FK_Type_of_analysis_Engineer_1" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalModel.FK_Laboratory_Hospital" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalModel.FK_Type_of_analysis_Laboratory" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
